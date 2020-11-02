@@ -40,6 +40,10 @@ public class CashDispenser {
         }
         return notes;
     }
+    
+    public int showCash() {
+        return this.availableCash;
+    }
 }
 
 
