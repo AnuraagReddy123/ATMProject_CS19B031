@@ -16,8 +16,9 @@ public class Menu extends javax.swing.JFrame {
         WithdrawButton = new javax.swing.JButton();
         DepositButton = new javax.swing.JButton();
         LogoutButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ChangePINButton = new javax.swing.JButton();
+        ViewCashButton = new javax.swing.JButton();
+        TransferButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,17 +50,24 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Change Pin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ChangePINButton.setText("Change Pin");
+        ChangePINButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ChangePINButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Cash in ATM");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ViewCashButton.setText("View Cash in ATM");
+        ViewCashButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ViewCashButtonActionPerformed(evt);
+            }
+        });
+
+        TransferButton.setText("Transfer");
+        TransferButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransferButtonActionPerformed(evt);
             }
         });
 
@@ -68,23 +76,21 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DepositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ViewBalanceButton)
-                                    .addComponent(WithdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                    .addComponent(ViewBalanceButton)
+                    .addComponent(WithdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ChangePINButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ViewCashButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TransferButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,16 +98,18 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ViewBalanceButton)
-                    .addComponent(jButton1))
+                    .addComponent(ChangePINButton))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(WithdrawButton)
-                    .addComponent(jButton2))
+                    .addComponent(TransferButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(DepositButton)
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DepositButton)
+                    .addComponent(ViewCashButton))
+                .addGap(44, 44, 44)
                 .addComponent(LogoutButton)
-                .addGap(42, 42, 42))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -113,6 +121,8 @@ public class Menu extends javax.swing.JFrame {
         /*A temporary file is created in which the data is copied from the Users.csv file but where
           the changes in the user's balance is changed accordingly. Then the Users.csv file is deleted and
           the temp.csv file is renamed as Users.csv*/
+        //https://www.youtube.com/watch?v=TpyRKom0X_s was referred
+        
         String csvFile = "Users.csv";
         User u = AccountPIN.user;
         int accNum = u.getAccNum();
@@ -180,16 +190,22 @@ public class Menu extends javax.swing.JFrame {
         d.setVisible(true);
     }//GEN-LAST:event_DepositButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ChangePINButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePINButtonActionPerformed
         dispose();
         ChangePIN c = new ChangePIN();
         c.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ChangePINButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ViewCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewCashButtonActionPerformed
         CashDispenser cd = WelcomePage.cashDispenser;
         JOptionPane.showMessageDialog(this, "Cash remaining in ATM is: Rs"+cd.showCash());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ViewCashButtonActionPerformed
+
+    private void TransferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferButtonActionPerformed
+        dispose();
+        Transfer t = new Transfer();
+        t.setVisible(true);
+    }//GEN-LAST:event_TransferButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,11 +243,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ChangePINButton;
     private javax.swing.JButton DepositButton;
     private javax.swing.JButton LogoutButton;
+    private javax.swing.JButton TransferButton;
     private javax.swing.JButton ViewBalanceButton;
+    private javax.swing.JButton ViewCashButton;
     private javax.swing.JButton WithdrawButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
