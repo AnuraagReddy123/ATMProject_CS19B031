@@ -92,6 +92,7 @@ public class Transfer extends javax.swing.JFrame {
         int accNum = u.getAccNum(), PIN = u.getPIN(), balance = u.viewBalance();
         
         int transferToAccNum = 0, amount = 0;
+        //To check whether the account number entered is an integer or not
         try {
             transferToAccNum = Integer.parseInt(AccNumTF.getText());
             amount = Integer.parseInt(AmountTF.getText());

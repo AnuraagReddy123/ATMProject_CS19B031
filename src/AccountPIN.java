@@ -14,7 +14,7 @@ public class AccountPIN extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        EnterButton = new javax.swing.JButton();
         AccNum = new javax.swing.JTextField();
         PIN = new javax.swing.JPasswordField();
 
@@ -24,10 +24,10 @@ public class AccountPIN extends javax.swing.JFrame {
 
         jLabel2.setText("Enter PIN Number");
 
-        jButton1.setText("Enter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        EnterButton.setText("Enter");
+        EnterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EnterButtonActionPerformed(evt);
             }
         });
 
@@ -47,7 +47,7 @@ public class AccountPIN extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGap(155, 155, 155)
-                .addComponent(jButton1)
+                .addComponent(EnterButton)
                 .addContainerGap(188, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -63,15 +63,17 @@ public class AccountPIN extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addComponent(PIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
-                .addComponent(jButton1)
+                .addComponent(EnterButton)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    //New User created here
     static User user = new User(0, 0, 0); //Static variable for user
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
         try {
             //Account Variables
             int accNum = Integer.parseInt(AccNum.getText());
@@ -131,7 +133,7 @@ public class AccountPIN extends javax.swing.JFrame {
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EnterButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -167,8 +169,8 @@ public class AccountPIN extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AccNum;
+    private javax.swing.JButton EnterButton;
     private javax.swing.JPasswordField PIN;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
