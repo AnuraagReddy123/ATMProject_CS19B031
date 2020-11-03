@@ -69,7 +69,7 @@ public class AccountPIN extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    //New User is defined that will be used everywhere
     static User user = new User(0, 0, 0); //Static variable for user
     
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
