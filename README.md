@@ -20,3 +20,6 @@ The Cash Dispenser begins with Rs 100000
 
 NOTE: Please don't open the Users.csv file when you press the transfer funds button and the logout button as during that time changes would be made in the file and keeping them    open might cause unexpected errors
 NOTE: Also if you are interested in changing the values of the Users.csv File please use notepad++ to ensure the [cr]and[lf] i.e. ('\r' and '\n') are present at the end of each line
+
+
+Mini Statement can be viewed by clicking the view MiniStatement button. The mini statement is displayed in a text area. It shows the transactions of the user till the user presses the logout button after which the statement will reset. (As it is a ministatement)
