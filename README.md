@@ -23,3 +23,5 @@ NOTE: Also if you are interested in changing the values of the Users.csv File pl
 
 
 Mini Statement can be viewed by clicking the view MiniStatement button. The mini statement is displayed in a text area. It shows the transactions of the user till the user presses the logout button after which the statement will reset. (As it is a ministatement)
+
+NOTE: Please don't close the Your Phone frame that pops up while changing PIN. Doing so might lead to unexpected errors. Let it close by itself. 
