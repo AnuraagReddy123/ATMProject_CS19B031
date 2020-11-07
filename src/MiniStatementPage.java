@@ -84,7 +84,7 @@ public class MiniStatementPage extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        MiniStatement ms = Menu.ms;
+        MiniStatement ms = Menu.ms; //Displaying the ministatement
         if (ms.showStatement().equals("")) {
             StatementArea.setText("No transactions performed");
         }

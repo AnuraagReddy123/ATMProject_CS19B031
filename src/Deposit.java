@@ -89,7 +89,7 @@ public class Deposit extends javax.swing.JFrame {
             else {
                 JOptionPane.showMessageDialog(this, "Amount Deposited: "+amount);
                 u.deposit(amount);
-                ms.changeDeposit(amount);
+                ms.changeDeposit(amount); //Changing MiniStatement
             }
         }
         catch (NumberFormatException e){

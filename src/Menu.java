@@ -189,7 +189,7 @@ public class Menu extends javax.swing.JFrame {
         dispose();
         WelcomePage wp = new WelcomePage();
         wp.setVisible(true);
-        ms.resetStatement();
+        ms.resetStatement(); //Resetting the ministatement
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void ViewBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewBalanceButtonActionPerformed
