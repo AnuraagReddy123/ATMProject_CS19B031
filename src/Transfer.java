@@ -89,7 +89,8 @@ public class Transfer extends javax.swing.JFrame {
 
     private void TransferFundsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferFundsButtonActionPerformed
         User u = AccountPIN.user;
-        int accNum = u.getAccNum(), PIN = u.getPIN(), balance = u.viewBalance(), phoneNumber = u.getPhoneNumber();
+        int accNum = u.getAccNum(), PIN = u.getPIN(), balance = u.viewBalance();
+        long phoneNumber = u.getPhoneNumber();
         MiniStatement ms = Menu.ms;
         
         int transferToAccNum = 0, amount = 0;
@@ -104,6 +105,9 @@ public class Transfer extends javax.swing.JFrame {
         
         if (balance < amount) {
             JOptionPane.showMessageDialog(this, "Not enough funds in account!");
+        }
+        else if (amount <= 0) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid amount");
         }
         else {
             String csvFile = "Users.csv";
@@ -159,6 +163,9 @@ public class Transfer extends javax.swing.JFrame {
 
                             if (Integer.parseInt(fileAccNum) == transferToAccNum) {
                                 pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount) + "," + filePhoneNumber); //Added amount to transfer account
+                            }
+                            else if (Integer.parseInt(fileAccNum)==accNum) {
+                                pw.println(u.getAccNum()+","+u.getPIN()+","+u.viewBalance()+","+u.getPhoneNumber());
                             }
                             else {
                                 pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);

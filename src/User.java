@@ -6,7 +6,7 @@ public class User {
     private int accNum;
     private int PIN;
     private int balance;
-    private int phoneNumber;
+    private long phoneNumber;
 
     User (int accNum, int PIN, int balance, int phoneNumber) {
         this.accNum = accNum;
@@ -53,11 +53,11 @@ public class User {
         this.PIN = PIN;
     }
     
-    public void setPhoneNumber (int phoneNumber) {
+    public void setPhoneNumber (long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return this.phoneNumber;
     }
 }

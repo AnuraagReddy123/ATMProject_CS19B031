@@ -100,7 +100,7 @@ public class AccountPIN extends javax.swing.JFrame {
                             flag = 1;
                             JOptionPane.showMessageDialog(this, "Entered successfully");
                             user.setBalance(Integer.parseInt(data[2]));     //Now user has accNum, pin, balance and Phone Number
-                            user.setPhoneNumber(Integer.parseInt(data[3]));
+                            user.setPhoneNumber(Long.parseLong(data[3]));
                             
                             //Closing this window
                             dispose();
@@ -133,6 +133,7 @@ public class AccountPIN extends javax.swing.JFrame {
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer");
+            e.printStackTrace();
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
 
