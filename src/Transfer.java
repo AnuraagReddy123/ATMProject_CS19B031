@@ -90,6 +90,7 @@ public class Transfer extends javax.swing.JFrame {
     private void TransferFundsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferFundsButtonActionPerformed
         User u = AccountPIN.user;
         int accNum = u.getAccNum(), PIN = u.getPIN(), balance = u.viewBalance();
+        MiniStatement ms = Menu.ms;
         
         int transferToAccNum = 0, amount = 0;
         //To check whether the account number entered is an integer or not
@@ -131,6 +132,7 @@ public class Transfer extends javax.swing.JFrame {
                 if (flag == 1) {    //That is the given record exists then we make the changes
                     
                     u.setBalance(balance-amount);
+                    ms.changetransferFunds(transferToAccNum, amount);
                     
                     //Changing CSV Values 
                     /*A temporary file is created in which the data is copied from the Users.csv file but where

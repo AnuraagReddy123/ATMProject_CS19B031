@@ -79,6 +79,7 @@ public class Deposit extends javax.swing.JFrame {
 
     private void DepositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositButtonActionPerformed
         User u = AccountPIN.user;
+        MiniStatement ms = Menu.ms;
         try {
             int amount = Integer.parseInt(deposit.getText());
             
@@ -88,7 +89,7 @@ public class Deposit extends javax.swing.JFrame {
             else {
                 JOptionPane.showMessageDialog(this, "Amount Deposited: "+amount);
                 u.deposit(amount);
-            
+                ms.changeDeposit(amount);
             }
         }
         catch (NumberFormatException e){
