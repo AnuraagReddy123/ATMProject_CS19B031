@@ -71,7 +71,7 @@ public class AccountPIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     //New User created here
-    static User user = new User(0, 0, 0); //Static variable for user
+    static User user = new User(0, 0, 0, 0); //Static variable for user
     
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
         try {
@@ -99,8 +99,9 @@ public class AccountPIN extends javax.swing.JFrame {
                         if (fromCsvPIN == pin) {
                             flag = 1;
                             JOptionPane.showMessageDialog(this, "Entered successfully");
-                            user.setBalance(Integer.parseInt(data[2]));     //Now user has accNum, pin, balance
-
+                            user.setBalance(Integer.parseInt(data[2]));     //Now user has accNum, pin, balance and Phone Number
+                            user.setPhoneNumber(Long.parseLong(data[3]));
+                            
                             //Closing this window
                             dispose();
                             Menu m = new Menu();
@@ -132,6 +133,7 @@ public class AccountPIN extends javax.swing.JFrame {
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer");
+            e.printStackTrace();
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
 

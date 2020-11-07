@@ -23,22 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ViewBalanceButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="WithdrawButton" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                   <Component id="DepositButton" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="ChangePINButton" pref="115" max="32767" attributes="0"/>
-                      <Component id="TransferButton" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="ViewCashButton" alignment="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="ChangePINButton" max="32767" attributes="0"/>
+                  <Component id="TransferButton" max="32767" attributes="0"/>
+                  <Component id="jButton1" min="-2" pref="115" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -47,8 +45,8 @@
                       <Component id="LogoutButton" min="-2" pref="93" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                      <Component id="ViewCashButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -71,11 +69,11 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="DepositButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ViewCashButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Component id="ViewCashButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
               <Component id="LogoutButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

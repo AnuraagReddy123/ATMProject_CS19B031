@@ -6,11 +6,13 @@ public class User {
     private int accNum;
     private int PIN;
     private int balance;
+    private long phoneNumber;
 
-    User (int accNum, int PIN, int balance) {
+    User (int accNum, int PIN, int balance, int phoneNumber) {
         this.accNum = accNum;
         this.PIN = PIN;
         this.balance = balance;
+        this.phoneNumber = phoneNumber;
     }
 
     //User Methods
@@ -49,5 +51,13 @@ public class User {
     
     public void setPIN (int PIN) {
         this.PIN = PIN;
+    }
+    
+    public void setPhoneNumber (long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+    public long getPhoneNumber() {
+        return this.phoneNumber;
     }
 }

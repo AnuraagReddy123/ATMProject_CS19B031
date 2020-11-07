@@ -90,6 +90,7 @@ public class Transfer extends javax.swing.JFrame {
     private void TransferFundsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferFundsButtonActionPerformed
         User u = AccountPIN.user;
         int accNum = u.getAccNum(), PIN = u.getPIN(), balance = u.viewBalance();
+        long phoneNumber = u.getPhoneNumber();
         MiniStatement ms = Menu.ms;
         
         int transferToAccNum = 0, amount = 0;
@@ -105,12 +106,15 @@ public class Transfer extends javax.swing.JFrame {
         if (balance < amount) {
             JOptionPane.showMessageDialog(this, "Not enough funds in account!");
         }
+        else if (amount <= 0) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid amount");
+        }
         else {
             String csvFile = "Users.csv";
             String tempFile = "temp.csv";
             File oldFile = new File(csvFile);
             File newFile = new File(tempFile);
-            String fileAccNum ="", filePIN = "", fileBalance = "";
+            String fileAccNum ="", filePIN = "", fileBalance = "", filePhoneNumber = "";
             
             //To check whether the given transfer to account number exists or not if exists then make appropriate changes
             try {               
@@ -122,7 +126,8 @@ public class Transfer extends javax.swing.JFrame {
                     fileAccNum = obj.next();
                     filePIN = obj.next();
                     fileBalance = obj.next();
-                    fileBalance = fileBalance.replace("\r", "");
+                    filePhoneNumber = obj.next();
+                    filePhoneNumber = filePhoneNumber.replace("\r", "");
                     if (transferToAccNum == Integer.parseInt(fileAccNum)) {
                         flag = 1;
                         break;
@@ -153,13 +158,17 @@ public class Transfer extends javax.swing.JFrame {
                             fileAccNum = sc.next();
                             filePIN = sc.next();
                             fileBalance = sc.next();
-                            fileBalance = fileBalance.replace("\r", "");
+                            filePhoneNumber = sc.next();
+                            filePhoneNumber = filePhoneNumber.replace("\r", "");
 
                             if (Integer.parseInt(fileAccNum) == transferToAccNum) {
-                                pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount)); //Added amount to transfer account
+                                pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount) + "," + filePhoneNumber); //Added amount to transfer account
+                            }
+                            else if (Integer.parseInt(fileAccNum)==accNum) {
+                                pw.println(u.getAccNum()+","+u.getPIN()+","+u.viewBalance()+","+u.getPhoneNumber());
                             }
                             else {
-                                pw.println(fileAccNum + "," + filePIN + "," + fileBalance);
+                                pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);
                             }
                         }
                         sc.close();
