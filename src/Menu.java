@@ -146,11 +146,12 @@ public class Menu extends javax.swing.JFrame {
         int accNum = u.getAccNum();
         int PIN = u.getPIN();
         int balance = u.viewBalance();
+        int phoneNumber = u.getPhoneNumber();
         
         String tempFile = "temp.csv";
         File oldFile = new File(csvFile);
         File newFile = new File(tempFile);
-        String fileAccNum ="", filePIN = "", fileBalance = "";
+        String fileAccNum ="", filePIN = "", fileBalance = "", filePhoneNumber = "";
         
         try {
             FileWriter fw = new FileWriter(tempFile, true);
@@ -164,13 +165,14 @@ public class Menu extends javax.swing.JFrame {
                 fileAccNum = obj.next();
                 filePIN = obj.next();
                 fileBalance = obj.next();
-                fileBalance = fileBalance.replace("\r", "");
+                filePhoneNumber = obj.next();
+                filePhoneNumber = filePhoneNumber.replace("\r", "");
                 
                 if (Integer.parseInt(fileAccNum) == accNum) {
-                    pw.println(accNum+","+PIN+","+balance);
+                    pw.println(accNum+","+PIN+","+balance+","+phoneNumber);
                 }
                 else {
-                    pw.println(fileAccNum + "," + filePIN + "," + fileBalance);
+                    pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);
                 }
             }
             obj.close();
