@@ -1,5 +1,13 @@
 import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 
 public class AccountPIN extends javax.swing.JFrame {
@@ -80,7 +88,11 @@ public class AccountPIN extends javax.swing.JFrame {
             int pin = Integer.parseInt(String.valueOf(PIN.getPassword()));
             user.setAccNum(accNum);
             user.setPIN(pin);
-
+            
+            System.out.println(EncryptPassword.encryptPIN(Integer.toString(72108)));
+            System.out.println(EncryptPassword.encryptPIN(Integer.toString(65073)));
+            System.out.println(EncryptPassword.encryptPIN(Integer.toString(55196)));
+            
             //To read from the CSV File
             String csvFile = "Users.csv";
             BufferedReader br = null;
@@ -138,6 +150,18 @@ public class AccountPIN extends javax.swing.JFrame {
             AccNum.setText("");
             PIN.setText("");
             e.printStackTrace();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
 
