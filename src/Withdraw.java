@@ -96,23 +96,28 @@ public class Withdraw extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Cash given in notes of 1000: "+notes[0]+" 500: "+notes[1]+ " 100: "+notes[2]);
                         }
                         else {
-                            JOptionPane.showMessageDialog(this, "NOt enough balance in account!");
+                            JOptionPane.showMessageDialog(this, "Not enough balance in account!");
+                            amountWithdraw.setText("");
                         }
                     }
                     else {
                         JOptionPane.showMessageDialog(this, "Not enough cash in the ATM! Sorry for the inconvenience.");
+                        amountWithdraw.setText("");
                     }
                 }
                 else {
                     JOptionPane.showMessageDialog(this, "Enter amount divisible by 100");
+                    amountWithdraw.setText("");
                 }
             }
             else {
                 JOptionPane.showMessageDialog(this, "Enter a positive number");
+                amountWithdraw.setText("");
             }
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Enter an integer");
+            amountWithdraw.setText("");
         }
         
     }//GEN-LAST:event_WithdrawButtonActionPerformed

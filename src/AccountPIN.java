@@ -112,6 +112,8 @@ public class AccountPIN extends javax.swing.JFrame {
                 }
                 if (flag == 0) {
                     JOptionPane.showMessageDialog(this, "Enter correct acc/pin");
+                    AccNum.setText("");
+                    PIN.setText("");
                 }
             }
             catch (FileNotFoundException e) {
@@ -133,6 +135,8 @@ public class AccountPIN extends javax.swing.JFrame {
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer");
+            AccNum.setText("");
+            PIN.setText("");
             e.printStackTrace();
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
