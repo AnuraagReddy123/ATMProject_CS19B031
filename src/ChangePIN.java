@@ -148,43 +148,72 @@ public class ChangePIN extends javax.swing.JFrame {
             oldPIN = Integer.parseInt(OldPINTF.getText());
             newPIN = Integer.parseInt(NewPINTF.getText());
             confirmNewPIN = Integer.parseInt(ConfirmNewPINTF.getText());
-        }
-        catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid integer");
-        }
-        
-        if (oldPIN == PIN) {
-            if (newPIN == confirmNewPIN) {
-                if (newPIN >= 0) {
-                    if (newPIN != oldPIN) {
-                        if (Integer.toString(newPIN).length() == 5) {
-                            int selectedOption = JOptionPane.showConfirmDialog(this,"Are you sure you want to change your PIN?", "Confirmation", JOptionPane.YES_NO_OPTION);
-                            if (selectedOption == 0) {
-                                EnterOTPLabel.setVisible(true);
-                                OTPTF.setVisible(true);
-                                ChangePINButton.setVisible(true);
-                                ChangePINButton.setEnabled(true);
-                                JOptionPane.showMessageDialog(this, "Message sent to " + phoneNumber.substring(0,4)+"******\nCheck your messages for OTP");
-                                GenerateOTPButton.setEnabled(false);
-                                OTP = rand.nextInt(1000000);
-                                yp.setVisible(true);
+            
+            if (oldPIN == PIN) {
+                if (newPIN == confirmNewPIN) {
+                    if (newPIN >= 0) {
+                        if (newPIN != oldPIN) {
+                            if (Integer.toString(newPIN).length() == 5) {
+                                int selectedOption = JOptionPane.showConfirmDialog(this,"Are you sure you want to change your PIN?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                                if (selectedOption == 0) {
+                                    EnterOTPLabel.setVisible(true);
+                                    OTPTF.setVisible(true);
+                                    ChangePINButton.setVisible(true);
+                                    ChangePINButton.setEnabled(true);
+                                    JOptionPane.showMessageDialog(this, "Message sent to " + phoneNumber.substring(0,4)+"******\nCheck your messages for OTP");
+                                    GenerateOTPButton.setEnabled(false);
+                                    OTP = rand.nextInt(1000000);
+                                    yp.setVisible(true);
+                                    
+                                    OldPINTF.setEnabled(false);
+                                    NewPINTF.setEnabled(false);
+                                    ConfirmNewPINTF.setEnabled(false);
+                                    
+                                }
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(this, "Enter a 5 digit PIN");
+                                OldPINTF.setText("");
+                                NewPINTF.setText("");
+                                ConfirmNewPINTF.setText("");
+                                
                             }
                         }
                         else {
-                            JOptionPane.showMessageDialog(this, "Enter a 5 digit PIN");
+                            JOptionPane.showMessageDialog(this, "Your new PIN is the same as the old PIN");
+                            OldPINTF.setText("");
+                            NewPINTF.setText("");
+                            ConfirmNewPINTF.setText("");
                         }
                     }
-                    else
-                        JOptionPane.showMessageDialog(this, "Your new PIN is the same as the old PIN");
+                    else {
+                        JOptionPane.showMessageDialog(this, "Please do not enter a negative integer");
+                        OldPINTF.setText("");
+                        NewPINTF.setText("");
+                        ConfirmNewPINTF.setText("");
+                    }
                 }
-                else
-                    JOptionPane.showMessageDialog(this, "Please do not enter a negative integer");
+                else {
+                    JOptionPane.showMessageDialog(this, "New PIN and confirmation do not match");
+                    OldPINTF.setText("");
+                    NewPINTF.setText("");
+                    ConfirmNewPINTF.setText("");
+                }
             }
-            else
-                JOptionPane.showMessageDialog(this, "New PIN and confirmation do not match");
+            else {
+                JOptionPane.showMessageDialog(this, "Please enter your correct Old Pin");
+                OldPINTF.setText("");
+                NewPINTF.setText("");
+                ConfirmNewPINTF.setText("");
+            }
+            
         }
-        else
-            JOptionPane.showMessageDialog(this, "Please enter your correct Old Pin");
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid integer");
+            OldPINTF.setText("");
+            NewPINTF.setText("");
+            ConfirmNewPINTF.setText("");
+        }
     }//GEN-LAST:event_GenerateOTPButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -201,19 +230,25 @@ public class ChangePIN extends javax.swing.JFrame {
         String phoneNumber = Long.toString(u.getPhoneNumber());
         
         Random rand = new Random();
-        while (true) {
+        try {
             int userOTP = Integer.parseInt(OTPTF.getText());
             if (userOTP == OTP) {
                 JOptionPane.showMessageDialog(this, "PIN changed successfully!");
                 u.setPIN(newPIN);
                 yp.dispose();
-                break;
+                OTPTF.setText("");
             }
             else {
-                JOptionPane.showMessageDialog(this, "Resending OTP...");
+                JOptionPane.showMessageDialog(this, "OTP not matching\nResending OTP...\nPlease check your messages again");
                 OTP = rand.nextInt(1000000);
+                OTPTF.setText("");
             } 
         }
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Enter an integer");
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_ChangePINButtonActionPerformed
 
     /**

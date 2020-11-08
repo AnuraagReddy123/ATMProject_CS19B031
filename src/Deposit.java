@@ -90,10 +90,12 @@ public class Deposit extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Amount Deposited: "+amount);
                 u.deposit(amount);
                 ms.changeDeposit(amount); //Changing MiniStatement
+                deposit.setText("");
             }
         }
         catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Enter an integer");
+            deposit.setText("");
         }
         
     }//GEN-LAST:event_DepositButtonActionPerformed

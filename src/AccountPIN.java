@@ -1,5 +1,13 @@
 import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 
 public class AccountPIN extends javax.swing.JFrame {
@@ -80,7 +88,8 @@ public class AccountPIN extends javax.swing.JFrame {
             int pin = Integer.parseInt(String.valueOf(PIN.getPassword()));
             user.setAccNum(accNum);
             user.setPIN(pin);
-
+            EncryptPassword ep = new EncryptPassword();
+                      
             //To read from the CSV File
             String csvFile = "Users.csv";
             BufferedReader br = null;
@@ -93,10 +102,10 @@ public class AccountPIN extends javax.swing.JFrame {
                 while ((line = br.readLine()) != null) {
                     String [] data = line.split(",");
                     Integer fromCsvAcc = Integer.parseInt(data[0]);
-                    Integer fromCsvPIN = Integer.parseInt(data[1]);
+                    String fromCsvPIN = data[1];
 
                     if (fromCsvAcc == accNum) {
-                        if (fromCsvPIN == pin) {
+                        if (fromCsvPIN.equals(ep.encrypt(Integer.toString(pin)))) {
                             flag = 1;
                             JOptionPane.showMessageDialog(this, "Entered successfully");
                             user.setBalance(Integer.parseInt(data[2]));     //Now user has accNum, pin, balance and Phone Number
@@ -112,6 +121,8 @@ public class AccountPIN extends javax.swing.JFrame {
                 }
                 if (flag == 0) {
                     JOptionPane.showMessageDialog(this, "Enter correct acc/pin");
+                    AccNum.setText("");
+                    PIN.setText("");
                 }
             }
             catch (FileNotFoundException e) {
@@ -133,7 +144,23 @@ public class AccountPIN extends javax.swing.JFrame {
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer");
+            AccNum.setText("");
+            PIN.setText("");
             e.printStackTrace();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
 
