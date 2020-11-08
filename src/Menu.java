@@ -147,6 +147,8 @@ public class Menu extends javax.swing.JFrame {
         int balance = u.viewBalance();
         long phoneNumber = u.getPhoneNumber();
         
+        
+        
         String tempFile = "temp.csv";
         File oldFile = new File(csvFile);
         File newFile = new File(tempFile);
@@ -156,6 +158,8 @@ public class Menu extends javax.swing.JFrame {
             FileWriter fw = new FileWriter(tempFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
+            
+            EncryptPassword ep = new EncryptPassword();
             
             Scanner obj = new Scanner(new File(csvFile));
             obj.useDelimiter("[,\n]");
@@ -168,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
                 filePhoneNumber = filePhoneNumber.replace("\r", "");
                 
                 if (Integer.parseInt(fileAccNum) == accNum) {
-                    pw.println(accNum+","+PIN+","+balance+","+phoneNumber);
+                    pw.println(accNum+","+ep.encrypt(Integer.toString(PIN))+","+balance+","+phoneNumber);
                 }
                 else {
                     pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);

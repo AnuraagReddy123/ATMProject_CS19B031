@@ -115,12 +115,15 @@ public class Transfer extends javax.swing.JFrame {
                 File oldFile = new File(csvFile);
                 File newFile = new File(tempFile);
                 String fileAccNum ="", filePIN = "", fileBalance = "", filePhoneNumber = "";
-
+                
                 //To check whether the given transfer to account number exists or not if exists then make appropriate changes
                 try {               
+                    
+                    EncryptPassword ep = new EncryptPassword();
+                    
                     Scanner obj = new Scanner(new File(csvFile));
                     obj.useDelimiter("[,\n]");
-
+                    
                     int flag = 0;
                     while (obj.hasNext()) {
                         fileAccNum = obj.next();
@@ -165,7 +168,7 @@ public class Transfer extends javax.swing.JFrame {
                                     pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount) + "," + filePhoneNumber); //Added amount to transfer account
                                 }
                                 else if (Integer.parseInt(fileAccNum)==accNum) {
-                                    pw.println(u.getAccNum()+","+u.getPIN()+","+u.viewBalance()+","+u.getPhoneNumber());
+                                    pw.println(u.getAccNum()+","+ep.encrypt(Integer.toString(u.getPIN()))+","+u.viewBalance()+","+u.getPhoneNumber());
                                 }
                                 else {
                                     pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);

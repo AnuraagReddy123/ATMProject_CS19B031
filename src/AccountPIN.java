@@ -88,11 +88,8 @@ public class AccountPIN extends javax.swing.JFrame {
             int pin = Integer.parseInt(String.valueOf(PIN.getPassword()));
             user.setAccNum(accNum);
             user.setPIN(pin);
-            
-            System.out.println(EncryptPassword.encryptPIN(Integer.toString(72108)));
-            System.out.println(EncryptPassword.encryptPIN(Integer.toString(65073)));
-            System.out.println(EncryptPassword.encryptPIN(Integer.toString(55196)));
-            
+            EncryptPassword ep = new EncryptPassword();
+                      
             //To read from the CSV File
             String csvFile = "Users.csv";
             BufferedReader br = null;
@@ -105,10 +102,10 @@ public class AccountPIN extends javax.swing.JFrame {
                 while ((line = br.readLine()) != null) {
                     String [] data = line.split(",");
                     Integer fromCsvAcc = Integer.parseInt(data[0]);
-                    Integer fromCsvPIN = Integer.parseInt(data[1]);
+                    String fromCsvPIN = data[1];
 
                     if (fromCsvAcc == accNum) {
-                        if (fromCsvPIN == pin) {
+                        if (fromCsvPIN.equals(ep.encrypt(Integer.toString(pin)))) {
                             flag = 1;
                             JOptionPane.showMessageDialog(this, "Entered successfully");
                             user.setBalance(Integer.parseInt(data[2]));     //Now user has accNum, pin, balance and Phone Number
@@ -161,6 +158,8 @@ public class AccountPIN extends javax.swing.JFrame {
         } catch (IllegalBlockSizeException ex) {
             Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (BadPaddingException ex) {
+            Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(AccountPIN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
