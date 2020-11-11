@@ -99,105 +99,113 @@ public class Transfer extends javax.swing.JFrame {
             transferToAccNum = Integer.parseInt(AccNumTF.getText());
             amount = Integer.parseInt(AmountTF.getText());
             
-            if (balance < amount) {
-                JOptionPane.showMessageDialog(this, "Not enough funds in account!");
-                AccNumTF.setText("");
-                AmountTF.setText("");
-            }
-            else if (amount <= 0) {
-                JOptionPane.showMessageDialog(this, "Please enter a valid amount");
+            
+            if (transferToAccNum == accNum) {
+                JOptionPane.showMessageDialog(this, "You cannot transfer funds to yourself!");
                 AccNumTF.setText("");
                 AmountTF.setText("");
             }
             else {
-                String csvFile = "Users.csv";
-                String tempFile = "temp.csv";
-                File oldFile = new File(csvFile);
-                File newFile = new File(tempFile);
-                String fileAccNum ="", filePIN = "", fileBalance = "", filePhoneNumber = "";
-                
-                //To check whether the given transfer to account number exists or not if exists then make appropriate changes
-                try {               
-                    
-                    EncryptPassword ep = new EncryptPassword();
-                    
-                    Scanner obj = new Scanner(new File(csvFile));
-                    obj.useDelimiter("[,\n]");
-                    
-                    int flag = 0;
-                    while (obj.hasNext()) {
-                        fileAccNum = obj.next();
-                        filePIN = obj.next();
-                        fileBalance = obj.next();
-                        filePhoneNumber = obj.next();
-                        filePhoneNumber = filePhoneNumber.replace("\r", "");
-                        if (transferToAccNum == Integer.parseInt(fileAccNum)) {
-                            flag = 1;
-                            break;
-                        }
-                    }
-                    obj.close();
-                    if (flag == 1) {    //That is the given record exists then we make the changes
+                if (balance < amount) {
+                    JOptionPane.showMessageDialog(this, "Not enough funds in account!");
+                    AccNumTF.setText("");
+                    AmountTF.setText("");
+                }
+                else if (amount <= 0) {
+                    JOptionPane.showMessageDialog(this, "Please enter a valid amount");
+                    AccNumTF.setText("");
+                    AmountTF.setText("");
+                }
+                else {
+                    String csvFile = "Users.csv";
+                    String tempFile = "temp.csv";
+                    File oldFile = new File(csvFile);
+                    File newFile = new File(tempFile);
+                    String fileAccNum ="", filePIN = "", fileBalance = "", filePhoneNumber = "";
 
-                        u.setBalance(balance-amount);
-                        ms.changetransferFunds(transferToAccNum, amount);
+                    //To check whether the given transfer to account number exists or not if exists then make appropriate changes
+                    try {               
 
-                        //Changing CSV Values 
-                        /*A temporary file is created in which the data is copied from the Users.csv file but where
-                        the changes in the user's balance and transferred account number's balance is changed accordingly. Then the Users.csv file is deleted and
-                        the temp.csv file is renamed as Users.csv*/
-                        //https://www.youtube.com/watch?v=TpyRKom0X_s video was referred 
+                        EncryptPassword ep = new EncryptPassword();
 
+                        Scanner obj = new Scanner(new File(csvFile));
+                        obj.useDelimiter("[,\n]");
 
-                        try {
-                            FileWriter fw = new FileWriter(tempFile, true);
-                            BufferedWriter bw = new BufferedWriter(fw);
-                            PrintWriter pw = new PrintWriter(bw);
-
-                            Scanner sc = new Scanner(new File(csvFile));
-                            sc.useDelimiter("[,\n]");
-
-                            while (sc.hasNext()) {
-                                fileAccNum = sc.next();
-                                filePIN = sc.next();
-                                fileBalance = sc.next();
-                                filePhoneNumber = sc.next();
-                                filePhoneNumber = filePhoneNumber.replace("\r", "");
-
-                                if (Integer.parseInt(fileAccNum) == transferToAccNum) {
-                                    pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount) + "," + filePhoneNumber); //Added amount to transfer account
-                                }
-                                else if (Integer.parseInt(fileAccNum)==accNum) {
-                                    pw.println(u.getAccNum()+","+ep.encrypt(Integer.toString(u.getPIN()))+","+u.viewBalance()+","+u.getPhoneNumber());
-                                }
-                                else {
-                                    pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);
-                                }
+                        int flag = 0;
+                        while (obj.hasNext()) {
+                            fileAccNum = obj.next();
+                            filePIN = obj.next();
+                            fileBalance = obj.next();
+                            filePhoneNumber = obj.next();
+                            filePhoneNumber = filePhoneNumber.replace("\r", "");
+                            if (transferToAccNum == Integer.parseInt(fileAccNum)) {
+                                flag = 1;
+                                break;
                             }
-                            sc.close();
-                            pw.flush();
-                            pw.close();
-                            oldFile.delete();
-                            File dump = new File(csvFile);
-                            newFile.renameTo(dump);
-                            JOptionPane.showMessageDialog(this, "Funds transferred successfully");
                         }
-                        catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "There was an error: "+e);
-                            e.printStackTrace();
-                        }
-                   }
-                    else if (flag == 0) {
-                        JOptionPane.showMessageDialog(this, "The given account number does not exist");
-                        AccNumTF.setText("");
-                        AmountTF.setText("");
-                    }
-                }
-                catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "There was an error: "+e);
-                    e.printStackTrace();
-                }
+                        obj.close();
+                        if (flag == 1) {    //That is the given record exists then we make the changes
 
+                            u.setBalance(balance-amount);
+                            ms.changetransferFunds(transferToAccNum, amount);
+
+                            //Changing CSV Values 
+                            /*A temporary file is created in which the data is copied from the Users.csv file but where
+                            the changes in the user's balance and transferred account number's balance is changed accordingly. Then the Users.csv file is deleted and
+                            the temp.csv file is renamed as Users.csv*/
+                            //https://www.youtube.com/watch?v=TpyRKom0X_s video was referred 
+
+
+                            try {
+                                FileWriter fw = new FileWriter(tempFile, true);
+                                BufferedWriter bw = new BufferedWriter(fw);
+                                PrintWriter pw = new PrintWriter(bw);
+
+                                Scanner sc = new Scanner(new File(csvFile));
+                                sc.useDelimiter("[,\n]");
+
+                                while (sc.hasNext()) {
+                                    fileAccNum = sc.next();
+                                    filePIN = sc.next();
+                                    fileBalance = sc.next();
+                                    filePhoneNumber = sc.next();
+                                    filePhoneNumber = filePhoneNumber.replace("\r", "");
+
+                                    if (Integer.parseInt(fileAccNum) == transferToAccNum) {
+                                        pw.println(fileAccNum+","+filePIN+","+(Integer.parseInt(fileBalance) + amount) + "," + filePhoneNumber); //Added amount to transfer account
+                                    }
+                                    else if (Integer.parseInt(fileAccNum)==accNum) {
+                                        pw.println(u.getAccNum()+","+ep.encrypt(Integer.toString(u.getPIN()))+","+u.viewBalance()+","+u.getPhoneNumber());
+                                    }
+                                    else {
+                                        pw.println(fileAccNum + "," + filePIN + "," + fileBalance + "," + filePhoneNumber);
+                                    }
+                                }
+                                sc.close();
+                                pw.flush();
+                                pw.close();
+                                oldFile.delete();
+                                File dump = new File(csvFile);
+                                newFile.renameTo(dump);
+                                JOptionPane.showMessageDialog(this, "Funds transferred successfully");
+                            }
+                            catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "There was an error: "+e);
+                                e.printStackTrace();
+                            }
+                       }
+                        else if (flag == 0) {
+                            JOptionPane.showMessageDialog(this, "The given account number does not exist");
+                            AccNumTF.setText("");
+                            AmountTF.setText("");
+                        }
+                    }
+                    catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "There was an error: "+e);
+                        e.printStackTrace();
+                    }
+
+                }
             }
         }
         catch (NumberFormatException e) {

@@ -22,13 +22,12 @@ public class MiniStatement {
         else {
             if (this.netAmount > 0)
                 return this.statement + "---------------------------------------------------------\n" + "Net transaction is:                           +"+this.netAmount;
-            else if (this.netAmount < 0)
-                return this.statement + "---------------------------------------------------------\n" + "Net transaction is:                           -"+this.netAmount;
-            else
+            else 
                 return this.statement + "---------------------------------------------------------\n" + "Net transaction is:                            "+this.netAmount;
         }
     }
     public void resetStatement() {
         this.statement = "";
+        this.netAmount = 0;
     }
 }
