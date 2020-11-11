@@ -29,6 +29,6 @@ Common Constraints implemented are:
 
 Mini Statement can be viewed by clicking the view MiniStatement button. The mini statement is displayed in a text area. It shows the transactions of the user till the user presses the logout button after which the statement will reset. (As it is a ministatement)
 
-NOTE: Please don't close the Your Phone frame that pops up while changing PIN. Doing so might lead to unexpected errors. Let it close by itself. 
+NOTE: Please don't close the Your Phone frame that pops up while changing PIN. Doing so might lead to unexpected errors. When you click the change PIN button it will close by itself. 
 
 NOTE: PIN is stored in the encrypted format (To prevent the owners of the banks to know what is the user's password). To see the original pin check Original_PIN_and_Encrypted.txt file present. The first column is the account number and the second column is the unencrypted PIN number.
