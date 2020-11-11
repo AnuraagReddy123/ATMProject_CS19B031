@@ -94,6 +94,7 @@ public class Withdraw extends javax.swing.JFrame {
                             int[] notes = new int[3];
                             notes = cd.giveCash(amount);
                             JOptionPane.showMessageDialog(this, "Cash given in notes of 1000: "+notes[0]+" 500: "+notes[1]+ " 100: "+notes[2]);
+                            amountWithdraw.setText("");
                         }
                         else {
                             JOptionPane.showMessageDialog(this, "Not enough balance in account!");

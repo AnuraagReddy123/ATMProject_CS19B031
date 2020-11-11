@@ -246,7 +246,6 @@ public class ChangePIN extends javax.swing.JFrame {
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Enter an integer");
-            e.printStackTrace();
         }
         
     }//GEN-LAST:event_ChangePINButtonActionPerformed
