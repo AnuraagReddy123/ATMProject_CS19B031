@@ -21,9 +21,14 @@ The Cash Dispenser begins with Rs 100000
 NOTE: Please don't open the Users.csv file when you press the transfer funds button and the logout button as during that time changes would be made in the file and keeping them    open might cause unexpected errors
 NOTE: Also if you are interested in changing the values of the Users.csv File please use notepad++ to ensure the [cr]and[lf] i.e. ('\r' and '\n') are present at the end of each line
 
+#EDIT:
+Common Constraints implemented are:
+1. OTP functionality added 
+2. Password encryption done
+3. Mini Statement can be viewed
 
 Mini Statement can be viewed by clicking the view MiniStatement button. The mini statement is displayed in a text area. It shows the transactions of the user till the user presses the logout button after which the statement will reset. (As it is a ministatement)
 
 NOTE: Please don't close the Your Phone frame that pops up while changing PIN. Doing so might lead to unexpected errors. Let it close by itself. 
 
-NOTE: PIN is stored in the encrypted format (To prevent the owners of the banks to know what is the user's password). To see the original pin check the txt file present.
+NOTE: PIN is stored in the encrypted format (To prevent the owners of the banks to know what is the user's password). To see the original pin check Original_PIN_and_Encrypted.txt file present. The first column is the account number and the second column is the unencrypted PIN number.
