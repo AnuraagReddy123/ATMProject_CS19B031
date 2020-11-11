@@ -21,7 +21,7 @@ The Cash Dispenser begins with Rs 100000
 NOTE: Please don't open the Users.csv file when you press the transfer funds button and the logout button as during that time changes would be made in the file and keeping them    open might cause unexpected errors
 NOTE: Also if you are interested in changing the values of the Users.csv File please use notepad++ to ensure the [cr]and[lf] i.e. ('\r' and '\n') are present at the end of each line
 
-#EDIT:
+# EDIT:
 Common Constraints implemented are:
 1. OTP functionality added 
 2. Password encryption done
